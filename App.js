@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, RefreshControl } from 'react-native';
+import { View, Text, FlatList, Image, RefreshControl, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 const BookListScreen = () => {
@@ -11,7 +11,7 @@ const BookListScreen = () => {
   }, []);
 
   const fetchData = async () => {
-    const baseUrl = 'http://localhost:5000/api';
+    const baseUrl = 'https://booklist-2lpq.onrender.com/api';
 
     try {
       const response = await axios.get(`${baseUrl}/books`);
@@ -42,17 +42,33 @@ const BookListScreen = () => {
   };
 
   return (
-    <View>
-      <FlatList
-        data={books}
-        renderItem={renderBookCard}
-        keyExtractor={(item) => item.id}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
-        onEndReachedThreshold={0.8}
-        onEndReached={handleRefresh}
-      />
+    <View style={styles.container}>
+      <Text>Books List</Text>
+
+      <View style={styles.listContainer}>
+        <FlatList
+          data={books}
+          renderItem={renderBookCard}
+          keyExtractor={(item) => item.id}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
+          onEndReachedThreshold={0.8}
+          onEndReached={handleRefresh}
+        />
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 60,
+    marginLeft: 30,
+  },
+
+  listContainer: {
+    flex: 1,
+  },
+});
 
 export default BookListScreen;
