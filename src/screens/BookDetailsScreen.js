@@ -1,12 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
+import { imageMap } from '../data/images';
 const imageSource = require('../../assets/images/6.png');
 
 const BookDetailsScreen = ({ route, navigation }) => {
   const { book } = route.params;
   const screenWidth = Dimensions.get('window').width;
   navigation.setOptions({ title: book.title });
+
+  // Get the corresponding image based on the book's coverImage value
+  const imageSource = imageMap[book.coverImage];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    height: 200,
+    height: 250,
     opacity: 0.7,
   },
 

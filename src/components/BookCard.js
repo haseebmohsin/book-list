@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-const imageSource = require('../../assets/images/6.png');
+import { imageMap } from '../data/images';
 
 const BookCard = ({ book, onPress }) => {
   const windowWidth = Dimensions.get('window').width;
   const imageWidth = windowWidth * 0.5;
   const imageHeight = imageWidth * 1;
+
+  // Get the corresponding image based on the book's coverImage value
+  const imageSource = imageMap[book.coverImage];
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
