@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+const imageSource = require('../../assets/images/6.png');
 
 const BookCard = ({ book, onPress }) => {
+  const windowWidth = Dimensions.get('window').width;
+  const imageWidth = windowWidth * 0.5;
+  const imageHeight = imageWidth * 1;
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={{ uri: 'https://source.unsplash.com/user/c_v_r/1900x800' }} style={styles.image} resizeMode='cover' />
+      <Image source={imageSource} style={[styles.image, { width: imageWidth, height: imageHeight }]} resizeMode='cover' />
 
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{book.title}</Text>
@@ -21,13 +26,9 @@ const BookCard = ({ book, onPress }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    flexDirection: 'column',
-    padding: 1,
   },
 
   image: {
-    width: 200,
-    height: 200,
     opacity: 0.6,
   },
 
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
 
