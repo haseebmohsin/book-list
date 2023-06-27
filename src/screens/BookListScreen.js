@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, RefreshControl, StyleSheet } from 'react-native';
 import axios from 'axios';
-import BookCard from './components/BookCard';
+import BookCard from '../components/BookCard';
 
 const BookListScreen = ({ navigation }) => {
   const [books, setBooks] = useState([]);
